@@ -1,19 +1,21 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  
 env:
   AZURE_WEBAPP_NAME: 519fall2023-project-prisnguyen
   WEB_PACKAGE_PATH: 'Node/WEB'
   FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
   NODE_VERSION: '18.x'
 
-  permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
