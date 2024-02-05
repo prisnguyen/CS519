@@ -32,7 +32,7 @@ jobs:
           npm install
 
       - name: npm install react frontend
-        working-directory: './${{ env.FRONTEND_PACKAGE_PATH }}'
+        working-directory: 'echo ${{ env.FRONTEND_PACKAGE PATH }} and pwd '
         run:
           npm install
           npm run build
