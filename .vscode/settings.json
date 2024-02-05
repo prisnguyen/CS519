@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/1b8c2d46-e9c2-43b0-914e-b08980179a92/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/519fall2023-project-prisnguyen",
+    "appService.deploySubpath": "."
+}
