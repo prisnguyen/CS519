@@ -64,17 +64,10 @@ jobs:
           name: node-app
 
 
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_EDC0B29B7168470184EDBBAE0C69E83D }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FC1DDDFE2D0A473C8E4E80D67995F515 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5C86A5238D8C4474A99BC480597BA62C }}
-
-      - name: 'Deploy to Azure Web App'
+      - name: 'Deploy to Azure WebApp'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: '519fall2023-project-prisnguyen'
-          slot-name: 'Production'
-          package: .
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.SECRET }}
+          package: ${{ env.WEBAPP_PACKAGE_PATH }}
