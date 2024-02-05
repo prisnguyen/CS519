@@ -30,6 +30,7 @@ jobs:
         working-directory: '${{ env.WEBAPP_PACKAGE_PATH }}'
         run: |
           npm install
+          echo "The working directory is ${{ env.WEBAPP_PACKAGE_PATH }}"
 
       - name: npm install react frontend
         working-directory: 'echo ${{ env.FRONTEND_PACKAGE_PATH }}'
