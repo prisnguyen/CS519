@@ -32,8 +32,8 @@ jobs:
           npm install
 
       - name: npm install react frontend
-        working-directory: 'echo ${{ env.FRONTEND_PACKAGE_PATH }} and pwd'
-        run:
+        working-directory: 'echo ${{ env.FRONTEND_PACKAGE_PATH }}'
+        run: |
           npm install
           npm run build
           rm -r public
