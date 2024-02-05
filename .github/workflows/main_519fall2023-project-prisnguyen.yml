@@ -9,7 +9,7 @@ on:
   
 env:
   AZURE_WEBAPP_NAME: 519fall2023-project-prisnguyen
-  WEB_PACKAGE_PATH: 'Node/WEB'
+  WEBAPP_PACKAGE_PATH: 'Node/WEB'
   FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
   NODE_VERSION: '18.x'
 
@@ -34,7 +34,7 @@ jobs:
           npm run test --if-present
 
       - name: npm install react frontend
-        working-directory: './${{ env.FRONTEND_PACKAGE_PATH }}'
+        working-directory: '${{ env.FRONTEND_PACKAGE_PATH }}'
         run:
           npm install
           npm run build
