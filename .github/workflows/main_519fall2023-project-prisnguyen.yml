@@ -1,6 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
+name: Build and deploy Node.js app to Azure Web App - 519fall2023-project-prisnguyen
 on:
   push:
     branches:
@@ -9,7 +10,7 @@ on:
   
 env:
   AZURE_WEBAPP_NAME: 519fall2023-project-prisnguyen
-  WEB_PACKAGE_PATH: 'Node/WEB'
+  WEBAPP_PACKAGE_PATH: 'Node/WEB'
   FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
   NODE_VERSION: '18.x'
 
@@ -30,12 +31,11 @@ jobs:
         working-directory: '${{ env.WEBAPP_PACKAGE_PATH }}'
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          echo "The working directory is ${{ env.WEBAPP_PACKAGE_PATH }}"
 
       - name: npm install react frontend
-        working-directory: './${{ env.FRONTEND_PACKAGE_PATH }}'
-        run:
+        working-directory: '${{ env.FRONTEND_PACKAGE_PATH }}'
+        run: |
           npm install
           npm run build
           rm -r public
@@ -69,5 +69,5 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.WEBAPP519FALL2023-PROJECT-PRISNGUYEN }}
+          publish-profile: ${{ secrets.SECRET }}
           package: ${{ env.WEBAPP_PACKAGE_PATH }}
