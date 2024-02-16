@@ -76,6 +76,6 @@ jobs:
         id: fa
         with:
           app-name: '519spring2024-hw2'
-          slot-name: 'Production'
+          slot-name: 'Deployment'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           
