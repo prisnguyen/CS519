@@ -6,7 +6,7 @@ name: Build and deploy Node.js project to Azure Function App - 519spring2024-hw2
 on:
   push:
     branches:
-      - master
+      - main
     paths: ["Node/API1/**"]
   workflow_dispatch:
 
@@ -61,8 +61,6 @@ jobs:
         with:
           name: node-app
 
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
       
       - name: Login to Azure
         uses: azure/login@v1
@@ -78,4 +76,5 @@ jobs:
           app-name: '519spring2024-hw2'
           slot-name: 'Deployment'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          publish-profile: ${{ secrets.PUBLISH_KEY }}
           
