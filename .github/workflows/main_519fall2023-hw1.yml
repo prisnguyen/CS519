@@ -1,77 +1,77 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - BUcs519
+# name: Build and deploy Node.js app to Azure Web App - BUcs519
 
-env:
-  AZURE_WEBAPP_NAME: 519fall2023-hw1
-  WEBAPP_PACKAGE_PATH: 'Node/WEB' # Replace with the path to your web app code
-  FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
-  NODE_VERSION: '18.x'
+# env:
+#   AZURE_WEBAPP_NAME: 519fall2023-hw1
+#   WEBAPP_PACKAGE_PATH: 'Node/WEB' # Replace with the path to your web app code
+#   FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
+#   NODE_VERSION: '18.x'
 
-permissions:
-  contents: read 
+# permissions:
+#   contents: read 
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
     
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-          cache-dependency-path: './Node/WEB/package.json'
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ env.NODE_VERSION }}
+#           cache: 'npm'
+#           cache-dependency-path: './Node/WEB/package.json'
 
-      - name: npm install, build, and test
-        working-directory: ${{ env.WEBAPP_PACKAGE_PATH }}
-        run: |
-          npm install
+#       - name: npm install, build, and test
+#         working-directory: ${{ env.WEBAPP_PACKAGE_PATH }}
+#         run: |
+#           npm install
 
-      - name: npm install, build, and test
-        working-directory: ${{ env.FRONTEND_PACKAGE_PATH }}
-        run: |
-          npm install
-          npm run build
-          rm -r public
-          rm -r node_modules
-          rm -r src 
+#       - name: npm install, build, and test
+#         working-directory: ${{ env.FRONTEND_PACKAGE_PATH }}
+#         run: |
+#           npm install
+#           npm run build
+#           rm -r public
+#           rm -r node_modules
+#           rm -r src 
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: node-app
-          path: ${{ env.WEBAPP_PACKAGE_PATH }}
+#       - name: Upload artifact for deployment job
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: node-app
+#           path: ${{ env.WEBAPP_PACKAGE_PATH }}
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write 
+#   deploy:
+#     runs-on: ubuntu-latest
+#     needs: build
+#     environment:
+#       name: 'Production'
+#       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+#     permissions:
+#       id-token: write 
 
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: node-app
+#     steps:
+#       - name: Download artifact from build job
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: node-app
       
-      - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: '519fall2023-hw1'
-          slot-name: 'Production'
-          package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0BC7F71BBEB345F0BC75E95CC2660880 }}
+#       - name: 'Deploy to Azure Web App'
+#         id: deploy-to-webapp
+#         uses: azure/webapps-deploy@v2
+#         with:
+#           app-name: '519fall2023-hw1'
+#           slot-name: 'Production'
+#           package: .
+#           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0BC7F71BBEB345F0BC75E95CC2660880 }}
