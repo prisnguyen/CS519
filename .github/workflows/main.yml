@@ -1,0 +1,30 @@
+name: Deploy Container App to Azure
+
+on:
+  push:
+    branches: ["main"]
+    paths: 
+      - "Node/API2/**"
+  workflow_dispatch:
+
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@v3
+
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.NewSecret }}
+
+    - name: Build and deploy Container App
+      uses: azure/container-apps-deploy-action@v1
+      with:
+        appSourcePath: ${{ github.workspace }}/Node/API2
+        acrName: cs519spring2024
+        containerAppName: spring2024-hw02
+        resourceGroup: Assignment2
