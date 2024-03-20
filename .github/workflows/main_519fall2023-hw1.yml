@@ -6,6 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - BUcs519
 env:
   AZURE_WEBAPP_NAME: 519fall2023-hw1
   WEBAPP_PACKAGE_PATH: 'Node/WEB' # Replace with the path to your web app code
+  FRONTEND_PACKAGE_PATH: 'Node/WEB/frontend'
   NODE_VERSION: '18.x'
 
 permissions:
