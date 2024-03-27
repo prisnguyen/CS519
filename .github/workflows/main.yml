@@ -27,4 +27,4 @@ jobs:
         acrName: cs519spring2024
         containerAppName: spring2024-hw02
         resourceGroup: container-app
-      
+        environmentVariables: Secret3=secretref:secret3 MyStorageConnectionAppSetting=secretref:queueconnection
